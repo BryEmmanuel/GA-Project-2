@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import SearchPage from "./components/SearchPage";
+import NavBar from "./components/NavBar";
+import { Navigate, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+
+import Faves from "./pages/Faves";
+import NotFound from "./pages/NotFound";
+import BusItems from "./components/BusItems";
 
 function App() {
   // to get bus stops data with ID and ADDRESS
+  // YAAAAAH
   const [busStops, setBusStops] = useState([]);
 
   const getBusStopsData = async () => {
@@ -51,12 +59,24 @@ function App() {
 
   return (
     <>
-      <div>
-        <SearchPage
-          getBusArrivalTime={getBusArrivalTime}
-          busArrival={busArrival}
-        />
-      </div>
+      <Suspense fallback={<h1>loading...</h1>}>
+        <NavBar></NavBar>
+        <Routes>
+          <Route path="/" element={<Navigate replace to="/home" />} />
+          <Route path="home" element={<Home />} />
+          <Route
+            path="bus"
+            element={
+              <BusItems
+                getBusArrivalTime={getBusArrivalTime}
+                busArrival={busArrival}
+              />
+            }
+          />
+          <Route path="favourites" element={<Faves />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
     </>
   );
 }
