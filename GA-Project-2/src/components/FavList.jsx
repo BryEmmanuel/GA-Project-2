@@ -6,8 +6,7 @@ const FavList = (props) => {
   useEffect(() => {
     const getFaveList = async () => {
       try {
-        const apiKey =
-          "patVWrJrm0Byqi0DB.ed2d6fb2ba0643959b035a6098a986dd0ae7e641604628afa326041873517e0b";
+        const apiKey = "yes";
         const url =
           "https://api.airtable.com/v0/app19paAgzC7Y35B7/Table%201?maxRecords=10&view=Grid%20view";
 
