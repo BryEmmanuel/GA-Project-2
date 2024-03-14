@@ -13,37 +13,75 @@ const SearchPage = (props) => {
       >
         Get Bus Arrival times
       </button>
-      <div>
-        {props.busArrival.services &&
-          props.busArrival.services.map((service, index) => (
-            <div className="table w-full" key={index}>
+      <>
+        {props.busArrival.services && (
+          <>
+            <div className="table w-full">
               <div className="table-header-group">
                 <div className="table-row">
-                  <div className="table-cell text-left">Service No.</div>
-                  <div className="table-cell text-left">Next Bus</div>
-                  <div className="table-cell text-left">Subsequent Bus</div>
-                </div>
-              </div>
-              <div className="table-row-group">
-                <div className="table-row">
-                  <div className="table cell">{service.no}</div>
-                  <div className="table cell">
-                    {Math.floor(service.next.duration_ms / 1000 / 60)}
+                  <div className="table-cell text-center font-bold">
+                    Service No.
                   </div>
-                  <div className="table cell">
-                    {Math.floor(service.subsequent.duration_ms / 1000 / 60)}
+                  <div className="table-cell text-center font-bold">
+                    Next Bus
+                  </div>
+                  <div className="table-cell text-center font-bold">
+                    Subsequent Bus
                   </div>
                 </div>
               </div>
-              Service No: {service.no}
-              <br />
-              Next Bus: {Math.floor(service.next.duration_ms / 1000 / 60)}
-              <br />
-              Subsequent Bus:
-              {Math.floor(service.subsequent.duration_ms / 1000 / 60)}
+
+              {props.busArrival.services
+                .sort((a, b) => a.no - b.no) // sort in ascending order
+                .map((service, index) => (
+                  <div className="table-row-group" key={index}>
+                    <div className="table-row">
+                      <div className="table-cell text-center">{service.no}</div>
+                      <div className="table-cell text-center">
+                        {Math.floor(service.next.duration_ms / 1000 / 60) <
+                        1 ? (
+                          <p className="text-green-400">Arriving</p>
+                        ) : Math.floor(service.next.duration_ms / 1000 / 60) <
+                          20 ? (
+                          <p className="text-yellow-400">
+                            {Math.floor(service.next.duration_ms / 1000 / 60) +
+                              " mins"}
+                          </p>
+                        ) : (
+                          <p className="text-red-400">
+                            {Math.floor(service.next.duration_ms / 1000 / 60) +
+                              " mins"}
+                          </p>
+                        )}
+                      </div>
+                      <div className="table-cell text-center">
+                        {Math.floor(
+                          service.subsequent.duration_ms / 1000 / 60
+                        ) < 1 ? (
+                          <p className="text-green-400">Arriving</p>
+                        ) : Math.floor(
+                            service.subsequent.duration_ms / 1000 / 60
+                          ) <= 9 ? (
+                          <p className="text-yellow-400">
+                            {Math.floor(
+                              service.subsequent.duration_ms / 1000 / 60
+                            ) + " mins"}
+                          </p>
+                        ) : (
+                          <p className="text-red-400">
+                            {Math.floor(
+                              service.subsequent.duration_ms / 1000 / 60
+                            ) + " mins"}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
             </div>
-          ))}
-      </div>
+          </>
+        )}
+      </>
     </div>
   );
 };
