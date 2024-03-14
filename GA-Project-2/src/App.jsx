@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useRef, useState } from "react";
 import SearchPage from "./components/SearchPage";
 import NavBar from "./components/NavBar";
 import { Navigate, Route, Routes } from "react-router-dom";
@@ -7,10 +7,48 @@ import Home from "./pages/Home";
 import Faves from "./pages/Faves";
 import NotFound from "./pages/NotFound";
 import BusItems from "./components/BusItems";
+import Bus from "./pages/Bus";
 
 function App() {
+  const [favourite, setFavourite] = useState([]);
+
+  const busCodeRef = useRef();
+
+  const addFavourite = async (busCode) => {
+    if (!busCode) {
+      console.error("Bus code is undefined or empty.");
+      return;
+    }
+    setFavourite([...favourite, busCode]);
+
+    const apiKey =
+      "patVWrJrm0Byqi0DB.ed2d6fb2ba0643959b035a6098a986dd0ae7e641604628afa326041873517e0b";
+    const url = "https://api.airtable.com/v0/app19paAgzC7Y35B7/Table%201";
+
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        fields: { Bus_Code: busCode },
+        typecast: true,
+      }),
+    });
+    if (res.ok) {
+      console.log(busCodeRef.current.value);
+      console.log(busCode);
+      console.log("Successfully added to favourites");
+    } else {
+      console.log("an ERROR has occured", await res.json());
+      console.log(busCodeRef.current.value);
+      console.log(busCode);
+    }
+  };
+
   // to get bus stops data with ID and ADDRESS
-  // YAAAAAH
+
   const [busStops, setBusStops] = useState([]);
 
   const getBusStopsData = async () => {
@@ -67,13 +105,15 @@ function App() {
           <Route
             path="bus"
             element={
-              <BusItems
+              <Bus
                 getBusArrivalTime={getBusArrivalTime}
                 busArrival={busArrival}
+                addFavourite={addFavourite}
+                busCodeRef={busCodeRef}
               />
             }
           />
-          <Route path="favourites" element={<Faves />} />
+          <Route path="favourites" element={<Faves favourite={favourite} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

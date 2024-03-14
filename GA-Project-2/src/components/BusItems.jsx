@@ -7,6 +7,8 @@ const BusItems = (props) => {
       <SearchPage
         getBusArrivalTime={props.getBusArrivalTime}
         busArrival={props.busArrival}
+        addFavourite={props.addFavourite}
+        busCodeRef={props.busCodeRef}
       />
     </>
   );

@@ -1,7 +1,51 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-const FavList = () => {
-  return <div>Faves</div>;
+const FavList = (props) => {
+  const [faveList, setFaveList] = useState([]);
+
+  useEffect(() => {
+    const getFaveList = async () => {
+      try {
+        const apiKey =
+          "patVWrJrm0Byqi0DB.ed2d6fb2ba0643959b035a6098a986dd0ae7e641604628afa326041873517e0b";
+        const url =
+          "https://api.airtable.com/v0/app19paAgzC7Y35B7/Table%201?maxRecords=10&view=Grid%20view";
+
+        const res = await fetch(url, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${apiKey}`,
+            "Content-Type": "application/json",
+          },
+        });
+        if (res.ok) {
+          const data = await res.json();
+          setFaveList(data.records);
+        }
+      } catch (error) {
+        if (error.name !== "AbortError") {
+          console.log(error.message);
+        }
+      }
+    };
+
+    getFaveList();
+  }, []);
+
+  return (
+    <>
+      <div>
+        {props.favorites?.map((busCode, index) => (
+          <div key={index}>{busCode}</div>
+        ))}
+      </div>
+      <div>
+        {faveList?.map((item) => (
+          <div key={item.id}>{item.fields.Bus_Code}</div>
+        ))}
+      </div>
+    </>
+  );
 };
 
 export default FavList;

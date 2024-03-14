@@ -1,18 +1,35 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 const SearchPage = (props) => {
-  const busCodeRef = useRef();
-
+  useEffect(() => {
+    console.log(props.busCodeRef.current.value);
+    console.log(props.busCode);
+  }, []);
   return (
     <div>
-      <input type="text" placeholder="Bus Stop Code" ref={busCodeRef} />
-      <button
-        onClick={() => {
-          props.getBusArrivalTime(busCodeRef.current.value);
-        }}
-      >
-        Get Bus Arrival times
-      </button>
+      <div className="flex justify-center">
+        <div className="flex">
+          <input
+            type="text"
+            placeholder="Bus Stop Code"
+            ref={props.busCodeRef}
+          />
+        </div>
+        <br />
+        <div className="flex">
+          <button
+            className="bg-sky-500 hover:bg-sky-700 rounded-full"
+            onClick={() => {
+              props.getBusArrivalTime(props.busCodeRef.current.value);
+            }}
+          >
+            Search
+          </button>
+        </div>
+      </div>
+      <br />
+      <br />
+      <br />
       <>
         {props.busArrival.services && (
           <>
@@ -41,8 +58,8 @@ const SearchPage = (props) => {
                         {Math.floor(service.next.duration_ms / 1000 / 60) <
                         1 ? (
                           <p className="text-green-400">Arriving</p>
-                        ) : Math.floor(service.next.duration_ms / 1000 / 60) <
-                          20 ? (
+                        ) : Math.floor(service.next.duration_ms / 1000 / 60) <=
+                          9 ? (
                           <p className="text-yellow-400">
                             {Math.floor(service.next.duration_ms / 1000 / 60) +
                               " mins"}
@@ -81,6 +98,12 @@ const SearchPage = (props) => {
             </div>
           </>
         )}
+        <button
+          type="button"
+          onClick={() => props.addFavourite(props.busCodeRef.current.value)}
+        >
+          Add to Favourites
+        </button>
       </>
     </div>
   );
