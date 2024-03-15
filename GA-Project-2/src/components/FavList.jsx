@@ -32,15 +32,23 @@ const FavList = (props) => {
 
   return (
     <>
-      <div>
-        {props.favorites?.map((busCode, index) => (
-          <div key={index}>{busCode}</div>
-        ))}
-      </div>
-      <div>
-        {faveList?.map((item) => (
-          <div key={item.id}>{item.fields.Bus_Code}</div>
-        ))}
+      <div className="flex justify-center">
+        <table className="table-auto w-full shadow-lg bg-white border-collapse">
+          <thead>
+            <tr>
+              <th className="bg-blue-100 border text-left px-8 py-4 text-xl">
+                Favourites
+              </th>
+            </tr>
+          </thead>
+          <tbody className="bg-white divide-y divide-gray-200">
+            {faveList.map((item) => (
+              <tr key={item.id} className="hover:bg-gray-50">
+                <td className="border px-8 py-4">{item.fields.Bus_Code}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </>
   );
