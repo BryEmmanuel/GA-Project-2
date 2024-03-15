@@ -13,12 +13,14 @@ const SearchPage = (props) => {
             type="text"
             placeholder="Bus Stop Code"
             ref={props.busCodeRef}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
         </div>
+
         <br />
         <div className="flex">
           <button
-            className="bg-sky-500 hover:bg-sky-700 rounded-full"
+            className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out"
             onClick={() => {
               props.getBusArrivalTime(props.busCodeRef.current.value);
             }}
@@ -98,12 +100,15 @@ const SearchPage = (props) => {
             </div>
           </>
         )}
-        <button
-          type="button"
-          onClick={() => props.addFavourite(props.busCodeRef.current.value)}
-        >
-          Add to Favourites
-        </button>
+        <div className="flex justify-center">
+          <button
+            type="button"
+            onClick={() => props.addFavourite(props.busCodeRef.current.value)}
+            className="bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:from-purple-600 hover:to-purple-800 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out"
+          >
+            Add to Favourites
+          </button>
+        </div>
       </>
     </div>
   );
