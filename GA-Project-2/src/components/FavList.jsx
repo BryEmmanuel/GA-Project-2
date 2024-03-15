@@ -6,14 +6,13 @@ const FavList = (props) => {
   useEffect(() => {
     const getFaveList = async () => {
       try {
-        const apiKey = "yes";
         const url =
-          "https://api.airtable.com/v0/app19paAgzC7Y35B7/Table%201?maxRecords=10&view=Grid%20view";
+          "https://api.airtable.com/v0/app19paAgzC7Y35B7/Table%201?maxRecords=50&view=Grid%20view";
 
         const res = await fetch(url, {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${apiKey}`,
+            Authorization: `Bearer ${import.meta.env.VITE_APIKEY}`,
             "Content-Type": "application/json",
           },
         });

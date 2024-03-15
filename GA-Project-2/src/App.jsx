@@ -21,13 +21,12 @@ function App() {
     }
     setFavourite([...favourite, busCode]);
 
-    const apiKey = "yes";
     const url = "https://api.airtable.com/v0/app19paAgzC7Y35B7/Table%201";
 
     const res = await fetch(url, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${apiKey}`,
+        Authorization: `Bearer ${import.meta.env.VITE_APIKEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
