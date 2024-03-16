@@ -45,7 +45,9 @@ function App() {
       console.log(busCode);
     }
   };
+
   // to get bus stops data with ID and ADDRESS
+  // this is for stretch goals if I'm wanting to use bus stop names instead.
 
   const [busStops, setBusStops] = useState([]);
 

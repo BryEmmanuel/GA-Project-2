@@ -13,6 +13,7 @@ const SearchPage = (props) => {
   }, []);
   return (
     <div>
+      <br />
       <div className="flex justify-center">
         <div className="flex">
           <input
@@ -104,25 +105,25 @@ const SearchPage = (props) => {
                   </div>
                 ))}
             </div>
+            <div className="flex justify-center">
+              <button
+                type="button"
+                onClick={() => {
+                  props.addFavourite(props.busCodeRef.current.value);
+                  openModal();
+                }}
+                className="bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:from-purple-600 hover:to-purple-800 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out"
+              >
+                Add to Favourites
+              </button>
+              <div>
+                <Modal isOpen={isModalOpen} onClose={closeModal}>
+                  <h2 className="text-center">Added to favourites!</h2>
+                </Modal>
+              </div>
+            </div>
           </>
         )}
-        <div className="flex justify-center">
-          <button
-            type="button"
-            onClick={() => {
-              props.addFavourite(props.busCodeRef.current.value);
-              openModal();
-            }}
-            className="bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:from-purple-600 hover:to-purple-800 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out"
-          >
-            Add to Favourites
-          </button>
-          <div>
-            <Modal isOpen={isModalOpen} onClose={closeModal}>
-              <h2 className="text-center">Added to favourites!</h2>
-            </Modal>
-          </div>
-        </div>
       </>
     </div>
   );
