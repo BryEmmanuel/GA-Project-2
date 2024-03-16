@@ -119,7 +119,7 @@ const SearchPage = (props) => {
           </button>
           <div>
             <Modal isOpen={isModalOpen} onClose={closeModal}>
-              <h2>Added to favourites!</h2>
+              <h2 className="text-center">Added to favourites!</h2>
             </Modal>
           </div>
         </div>
