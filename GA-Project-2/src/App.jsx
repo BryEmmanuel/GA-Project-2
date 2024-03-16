@@ -19,6 +19,7 @@ function App() {
       console.error("Bus code is undefined or empty.");
       return;
     }
+
     setFavourite([...favourite, busCode]);
 
     const url = "https://api.airtable.com/v0/app19paAgzC7Y35B7/Table%201";
@@ -44,7 +45,6 @@ function App() {
       console.log(busCode);
     }
   };
-
   // to get bus stops data with ID and ADDRESS
 
   const [busStops, setBusStops] = useState([]);
