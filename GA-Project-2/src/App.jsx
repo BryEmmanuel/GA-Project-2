@@ -46,37 +46,6 @@ function App() {
     }
   };
 
-  // to get bus stops data with ID and ADDRESS
-  // this is for stretch goals if I'm wanting to use bus stop names instead.
-
-  const [busStops, setBusStops] = useState([]);
-
-  const getBusStopsData = async () => {
-    try {
-      const res = await fetch("https://data.busrouter.sg/v1/stops.min.json");
-      if (res.ok) {
-        const data = await res.json();
-        console.log(data);
-        const formattedData = [];
-        for (const key in data) {
-          const busStop = {
-            ID: key,
-            Name: data[key][2],
-            Long: data[key][0],
-            Lat: data[key][1],
-          };
-          formattedData.push(busStop);
-        }
-        console.log(formattedData);
-        setBusStops(formattedData);
-      }
-    } catch (error) {
-      if (error.name !== "AbortError") {
-        console.log(error.message);
-      }
-    }
-  };
-
   const [busArrival, setBusArrival] = useState([]);
 
   const getBusArrivalTime = async (buscodeID) => {

@@ -3,6 +3,58 @@ import Modal from "./Modal";
 
 const SearchPage = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [busCode, setBusCode] = useState(""); // State to hold the bus stop code
+  const [invalidBusCode, setInvalidBusCode] = useState(""); // State to hold invalid bus stop code
+
+  const [busStops, setBusStops] = useState([]); // State to hold bus stop data
+
+  // to get data of bus stops, specfically the bus stop ID for form validation
+
+  const getBusStopsData = async () => {
+    try {
+      const res = await fetch("https://data.busrouter.sg/v1/stops.min.json");
+      if (res.ok) {
+        const data = await res.json();
+        console.log(data);
+        const formattedData = [];
+        for (const key in data) {
+          const busStop = {
+            ID: key,
+            Name: data[key][2],
+            Long: data[key][0],
+            Lat: data[key][1],
+          };
+          formattedData.push(busStop);
+        }
+        console.log(formattedData);
+        setBusStops(formattedData);
+      }
+    } catch (error) {
+      if (error.name !== "AbortError") {
+        console.log(error.message);
+      }
+    }
+  };
+
+  // map through busStop and for each 'bus stop' return the ID and store in the new array
+  const validBusStopCodes = busStops.map((busStop) => busStop.ID);
+
+  const handleInputChange = (event) => {
+    const value = event.target.value;
+    setBusCode(value);
+
+    // validation to check if the input contains a valid bus stop code
+    if (!value.trim()) {
+      setInvalidBusCode("Bus stop code is required.");
+    } else if (value.length !== 5) {
+      // Check if the input is exactly 5 digits long
+      setInvalidBusCode("Bus stop code must be 5 digits.");
+    } else if (!validBusStopCodes.includes(value)) {
+      setInvalidBusCode("Invalid Bus Stop Code");
+    } else {
+      setInvalidBusCode("");
+    }
+  };
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -10,6 +62,7 @@ const SearchPage = (props) => {
   useEffect(() => {
     console.log(props.busCodeRef.current.value);
     console.log(props.busCode);
+    getBusStopsData();
   }, []);
   return (
     <div>
@@ -19,6 +72,8 @@ const SearchPage = (props) => {
           <input
             type="text"
             placeholder="Bus Stop Code"
+            value={busCode}
+            onChange={handleInputChange}
             ref={props.busCodeRef}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
@@ -36,6 +91,10 @@ const SearchPage = (props) => {
           </button>
         </div>
       </div>
+      <br />
+      {invalidBusCode && (
+        <p className="text-red-500 text-xs text-center">{invalidBusCode}</p>
+      )}
       <br />
       <br />
       <br />
