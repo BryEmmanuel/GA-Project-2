@@ -105,6 +105,7 @@ const SearchPage = (props) => {
                   </div>
                 ))}
             </div>
+
             <div className="flex justify-center">
               <button
                 type="button"
