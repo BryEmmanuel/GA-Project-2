@@ -15,6 +15,6 @@ OnlyBus - A bus arrival timing app for Singapore buses.
 ## Getting Started
 
 - Wireframe
-- Trello Planning Board
+  [Trello](https://trello.com/b/y7vmC03P)
 
 ## Future Plans

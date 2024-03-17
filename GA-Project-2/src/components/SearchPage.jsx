@@ -44,7 +44,7 @@ const SearchPage = (props) => {
     setBusCode(value);
 
     // validation to check if the input contains a valid bus stop code
-    // trim checks if the input form is empty or contains spaces
+    // trim checks if the input form is empty or contains spaces, ! negates that and returns true
     if (!value.trim()) {
       setInvalidBusCode("Bus stop code is required.");
     } else if (value.length !== 5) {
@@ -95,7 +95,7 @@ const SearchPage = (props) => {
       </div>
       <br />
       {invalidBusCode && (
-        <p className="text-red-500 text-xs text-center">{invalidBusCode}</p>
+        <p className="text-red-500 text-s text-center">{invalidBusCode}</p>
       )}
       <br />
       <br />
