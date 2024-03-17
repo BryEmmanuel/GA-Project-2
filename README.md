@@ -27,6 +27,7 @@ OnlyBus - A bus arrival timing app for Singapore buses.
 - React
 - Tailwind CSS
 - npmjs react typed for typing effect
+- https://github.com/cheeaun/arrivelah : proxy API to LTA's DataMall Bus Arrival API.
 
 ## Getting Started
 
@@ -34,3 +35,8 @@ OnlyBus - A bus arrival timing app for Singapore buses.
   [Trello](https://trello.com/b/y7vmC03P)
 
 ## Future Plans
+
+## License
+
+Credit to original owner as stated above: [MIT](https://cheeaun.mit-license.org/)
+Data copyrighted by [LTA](https://datamall.lta.gov.sg/content/datamall/en.html)
