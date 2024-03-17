@@ -10,6 +10,7 @@ import BusItems from "./components/BusItems";
 import Bus from "./pages/Bus";
 
 function App() {
+  // lifting state
   const [favourite, setFavourite] = useState([]);
 
   const busCodeRef = useRef();
