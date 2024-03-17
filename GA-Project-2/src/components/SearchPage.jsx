@@ -44,12 +44,14 @@ const SearchPage = (props) => {
     setBusCode(value);
 
     // validation to check if the input contains a valid bus stop code
+    // trim checks if the input form is empty or contains spaces
     if (!value.trim()) {
       setInvalidBusCode("Bus stop code is required.");
     } else if (value.length !== 5) {
       // Check if the input is exactly 5 digits long
       setInvalidBusCode("Bus stop code must be 5 digits.");
     } else if (!validBusStopCodes.includes(value)) {
+      // Check with the bus stop code data to see if it matches any of the valid bus stop codes
       setInvalidBusCode("Invalid Bus Stop Code");
     } else {
       setInvalidBusCode("");
