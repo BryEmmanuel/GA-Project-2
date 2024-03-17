@@ -4,17 +4,20 @@ OnlyBus - A bus arrival timing app for Singapore buses.
 
 ## Screenshot preview of OnlyBus
 
-- HOME page
-  ![alt text](https://github.com/BryEmmanuel/GA-Project-2/blob/main/OnlyBus-HomePage.png?raw=true)
+### Home-Page
 
-- BUS page
-  ![alt text](https://github.com/BryEmmanuel/GA-Project-2/blob/main/OnlyBus-BusPage-LengthValidation.png?raw=true)
-  ![alt text](https://github.com/BryEmmanuel/GA-Project-2/blob/main/OnlyBus-BusPage-ValidID.png?raw=true)
-  ![alt text](https://github.com/BryEmmanuel/GA-Project-2/blob/main/OnlyBus-BusPage-SearchFunction.png?raw=true)
-  ![alt text](https://github.com/BryEmmanuel/GA-Project-2/blob/main/OnlyBus-BusPage-Modal.png?raw=true)
+![alt text](https://github.com/BryEmmanuel/GA-Project-2/blob/main/OnlyBus-HomePage.png?raw=true)
 
-- FAVE page
-  ![alt text](https://github.com/BryEmmanuel/GA-Project-2/blob/main/OnlyBus-FavPage.png?raw=true)
+### Bus-Page
+
+![alt text](https://github.com/BryEmmanuel/GA-Project-2/blob/main/OnlyBus-BusPage-LengthValidation.png?raw=true)
+![alt text](https://github.com/BryEmmanuel/GA-Project-2/blob/main/OnlyBus-BusPage-ValidID.png?raw=true)
+![alt text](https://github.com/BryEmmanuel/GA-Project-2/blob/main/OnlyBus-BusPage-SearchFunction.png?raw=true)
+![alt text](https://github.com/BryEmmanuel/GA-Project-2/blob/main/OnlyBus-BusPage-Modal.png?raw=true)
+
+### FAV-Page
+
+![alt text](https://github.com/BryEmmanuel/GA-Project-2/blob/main/OnlyBus-FavPage.png?raw=true)
 
 ## Technologies Used
 
