@@ -36,6 +36,10 @@ OnlyBus - A bus arrival timing app for Singapore buses.
 
 ## Future Plans
 
+- Add more graphical info regarding type of buses and their load capacity
+- Updated favourites list to be able to delete and update
+- Using a map API to provide actual GPS data to search via current location as a more accurate way of determining location
+
 ## License
 
 Credit to original owner as stated above: [MIT](https://cheeaun.mit-license.org/)
