@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import Modal from "./Modal";
 
 const SearchPage = (props) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [busCode, setBusCode] = useState(""); // State to hold the bus stop code
   const [invalidBusCode, setInvalidBusCode] = useState(""); // State to hold invalid bus stop code
 
@@ -59,9 +58,6 @@ const SearchPage = (props) => {
       setInvalidBusCode("");
     }
   };
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
 
   useEffect(() => {
     console.log(props.busCodeRef.current.value);
@@ -174,14 +170,14 @@ const SearchPage = (props) => {
                 type="button"
                 onClick={() => {
                   props.addFavourite(props.busCodeRef.current.value);
-                  openModal();
+                  props.openModal();
                 }}
                 className="bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:from-purple-600 hover:to-purple-800 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out"
               >
                 Add to Favourites
               </button>
               <div>
-                <Modal isOpen={isModalOpen} onClose={closeModal}>
+                <Modal isOpen={props.isModalOpen} onClose={props.closeModal}>
                   <h2 className="text-center">Added to favourites!</h2>
                 </Modal>
               </div>

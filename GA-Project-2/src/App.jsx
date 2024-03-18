@@ -11,6 +11,9 @@ import Bus from "./pages/Bus";
 
 function App() {
   // lifting state
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   const busCodeRef = useRef();
 
@@ -77,10 +80,22 @@ function App() {
                 busArrival={busArrival}
                 addFavourite={addFavourite}
                 busCodeRef={busCodeRef}
+                isModalOpen={isModalOpen}
+                openModal={openModal}
+                closeModal={closeModal}
               />
             }
           />
-          <Route path="favourites" element={<Faves />} />
+          <Route
+            path="favourites"
+            element={
+              <Faves
+                isModalOpen={isModalOpen}
+                openModal={openModal}
+                closeModal={closeModal}
+              />
+            }
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Modal from "./Modal";
 
 const FavList = (props) => {
   const [faveList, setFaveList] = useState([]);
@@ -64,14 +65,27 @@ const FavList = (props) => {
           <tbody className="bg-white divide-y divide-gray-200">
             {faveList.map((item) => (
               <tr key={item.id} className="hover:bg-gray-50">
-                <td className="border px-8 py-4">
+                <td className="border px-8 py-4 flex justify-between items-center">
                   {item.fields.Bus_Code}
-                  <button onClick={() => delFavourite(item.id)}>DELETE</button>
+                  <button
+                    onClick={() => {
+                      delFavourite(item.id);
+                      props.openModal();
+                    }}
+                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                  >
+                    DELETE
+                  </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+      </div>
+      <div>
+        <Modal isOpen={props.isModalOpen} onClose={props.closeModal}>
+          <h2 className="text-center">Deleted from favourites!</h2>
+        </Modal>
       </div>
     </>
   );

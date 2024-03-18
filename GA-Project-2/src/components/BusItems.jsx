@@ -9,6 +9,9 @@ const BusItems = (props) => {
         busArrival={props.busArrival}
         addFavourite={props.addFavourite}
         busCodeRef={props.busCodeRef}
+        isModalOpen={props.isModalOpen}
+        openModal={props.openModal}
+        closeModal={props.closeModal}
       />
     </>
   );
