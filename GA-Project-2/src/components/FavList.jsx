@@ -31,6 +31,25 @@ const FavList = (props) => {
     getFaveList();
   }, []);
 
+  const delFavourite = async (recordId) => {
+    const res = await fetch(
+      `https://api.airtable.com/v0/app19paAgzC7Y35B7/Table%201/${recordId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${import.meta.env.VITE_APIKEY}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (res.ok) {
+      // remove item from faveList state based on recordId
+      setFaveList(faveList.filter((item) => item.id !== recordId));
+    } else {
+      console.log("an ERROR has occured", await res.json());
+    }
+  };
+
   return (
     <>
       <div className="flex justify-center">
@@ -45,7 +64,10 @@ const FavList = (props) => {
           <tbody className="bg-white divide-y divide-gray-200">
             {faveList.map((item) => (
               <tr key={item.id} className="hover:bg-gray-50">
-                <td className="border px-8 py-4">{item.fields.Bus_Code}</td>
+                <td className="border px-8 py-4">
+                  {item.fields.Bus_Code}
+                  <button onClick={() => delFavourite(item.id)}>DELETE</button>
+                </td>
               </tr>
             ))}
           </tbody>

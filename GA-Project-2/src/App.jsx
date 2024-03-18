@@ -11,7 +11,6 @@ import Bus from "./pages/Bus";
 
 function App() {
   // lifting state
-  const [favourite, setFavourite] = useState([]);
 
   const busCodeRef = useRef();
 
@@ -38,8 +37,6 @@ function App() {
       console.error("Bus code is undefined or empty.");
       return;
     }
-
-    setFavourite([...favourite, busCode]);
 
     const url = "https://api.airtable.com/v0/app19paAgzC7Y35B7/Table%201";
 
@@ -83,7 +80,7 @@ function App() {
               />
             }
           />
-          <Route path="favourites" element={<Faves favourite={favourite} />} />
+          <Route path="favourites" element={<Faves />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
