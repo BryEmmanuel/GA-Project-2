@@ -2,13 +2,16 @@ import React, { useEffect, useRef, useState } from "react";
 import Modal from "./Modal";
 
 const SearchPage = (props) => {
-  const [busCode, setBusCode] = useState(""); // State to hold the bus stop code
-  const [invalidBusCode, setInvalidBusCode] = useState(""); // State to hold invalid bus stop code
+  // state to hold the bus stop code
+  const [busCode, setBusCode] = useState("");
 
-  const [busStops, setBusStops] = useState([]); // State to hold bus stop data
+  // state to hold invalid bus stop code
+  const [invalidBusCode, setInvalidBusCode] = useState("");
+
+  // state to hold bus stop data
+  const [busStops, setBusStops] = useState([]);
 
   // to get data of bus stops, specfically the bus stop ID for form validation
-
   const getBusStopsData = async () => {
     try {
       const res = await fetch("https://data.busrouter.sg/v1/stops.min.json");
@@ -98,6 +101,7 @@ const SearchPage = (props) => {
       <br />
       <br />
       <br />
+
       <>
         {props.busArrival.services && (
           <>
@@ -164,7 +168,7 @@ const SearchPage = (props) => {
                   </div>
                 ))}
             </div>
-
+            <br />
             <div className="flex justify-center">
               <button
                 type="button"

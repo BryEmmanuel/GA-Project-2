@@ -1,12 +1,9 @@
 import React, { Suspense, useRef, useState } from "react";
-import SearchPage from "./components/SearchPage";
 import NavBar from "./components/NavBar";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-
 import Faves from "./pages/Faves";
 import NotFound from "./pages/NotFound";
-import BusItems from "./components/BusItems";
 import Bus from "./pages/Bus";
 
 function App() {
@@ -60,8 +57,6 @@ function App() {
       console.log("Successfully added to favourites");
     } else {
       console.log("an ERROR has occured", await res.json());
-      console.log(busCodeRef.current.value);
-      console.log(busCode);
     }
   };
 
