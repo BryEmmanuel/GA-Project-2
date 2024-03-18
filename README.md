@@ -35,6 +35,8 @@ OnlyBus - A bus arrival timing app for Singapore buses.
 - Wireframe
   [Trello](https://trello.com/b/y7vmC03P)
 
+  - Search via bus stop code
+
 ## Future Plans
 
 - Add more graphical info regarding type of buses and their load capacity
