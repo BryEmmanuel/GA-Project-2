@@ -15,6 +15,24 @@ function App() {
 
   const busCodeRef = useRef();
 
+  const [busArrival, setBusArrival] = useState([]);
+
+  const getBusArrivalTime = async (buscodeID) => {
+    try {
+      const res = await fetch(
+        `https://arrivelah2.busrouter.sg/?id=${buscodeID}`
+      );
+      if (res.ok) {
+        const data = await res.json();
+        setBusArrival(data);
+      }
+    } catch (error) {
+      if (error.name !== "AbortError") {
+        console.log(error.message);
+      }
+    }
+  };
+
   const addFavourite = async (busCode) => {
     if (!busCode) {
       console.error("Bus code is undefined or empty.");
@@ -44,24 +62,6 @@ function App() {
       console.log("an ERROR has occured", await res.json());
       console.log(busCodeRef.current.value);
       console.log(busCode);
-    }
-  };
-
-  const [busArrival, setBusArrival] = useState([]);
-
-  const getBusArrivalTime = async (buscodeID) => {
-    try {
-      const res = await fetch(
-        `https://arrivelah2.busrouter.sg/?id=${buscodeID}`
-      );
-      if (res.ok) {
-        const data = await res.json();
-        setBusArrival(data);
-      }
-    } catch (error) {
-      if (error.name !== "AbortError") {
-        console.log(error.message);
-      }
     }
   };
 

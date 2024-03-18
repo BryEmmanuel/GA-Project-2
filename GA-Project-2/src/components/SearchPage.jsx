@@ -15,7 +15,9 @@ const SearchPage = (props) => {
       const res = await fetch("https://data.busrouter.sg/v1/stops.min.json");
       if (res.ok) {
         const data = await res.json();
+        // data is a giant KVP of BusCode : ARRAY [long , lat , start , end]
         console.log(data);
+        // for...in iterates through the KVP and returns individual objects based on the params I set
         const formattedData = [];
         for (const key in data) {
           const busStop = {
