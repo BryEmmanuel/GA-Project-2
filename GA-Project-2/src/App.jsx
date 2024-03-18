@@ -14,6 +14,7 @@ function App() {
 
   const busCodeRef = useRef();
 
+  // fetch data for bus arrival timings based on bus code
   const [busArrival, setBusArrival] = useState([]);
 
   const getBusArrivalTime = async (buscodeID) => {
@@ -48,6 +49,7 @@ function App() {
       },
       body: JSON.stringify({
         fields: { Bus_Code: busCode },
+
         typecast: true,
       }),
     });
