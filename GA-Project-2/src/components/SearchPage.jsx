@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "./Modal";
 
 const SearchPage = (props) => {
@@ -168,6 +168,7 @@ const SearchPage = (props) => {
                   </div>
                 ))}
             </div>
+
             <br />
             <div className="flex justify-center">
               <button
