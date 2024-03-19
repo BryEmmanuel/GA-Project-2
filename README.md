@@ -27,7 +27,7 @@ OnlyBus - A bus arrival timing app for Singapore buses.
 - JavaScript
 - React
 - Tailwind CSS
-- npmjs react typed for typing effect
+- https://www.npmjs.com/package/react-typed?activeTab=readme : npmjs react typed for typing effect
 - https://github.com/cheeaun/arrivelah : proxy API to LTA's DataMall Bus Arrival API.
 
 ## Getting Started
